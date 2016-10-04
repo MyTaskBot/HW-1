@@ -117,7 +117,7 @@ def teams_print(teams):
            ("losses", 8, "Пораж."),
            ("draws", 8, "Ничьих")]
     table_print(teams, col)
-    return;
+    return
 
 
 # Samle for teams_print()
@@ -125,17 +125,17 @@ def teams_print(teams):
 
 
 # return -1 if not found
-def teams_get_id(teams, name, speed_search=False):
+def teams_get_id(teams, name, speed_search=True):
     if (speed_search or hasattr(teams_get_id, '_dir')):
         # create static dir
         if (not hasattr(teams_get_id, '_dir')):
             teams_get_id._dir = {}
             for team in teams:
-                teams_get_id._dir[team["name"]] = team["id"]
+                teams_get_id._dir[team["name"].lower()] = team["id"]
         return teams_get_id._dir.get(name, -1)
     else:
         for team in teams:
-            if (team["name"] == name):
+            if (team["name"].lower() == name):
                 return team["id"]
     return -1
 
@@ -212,7 +212,7 @@ def check_teams(id1, id2):
 def get_query():
     while True:
         try:
-            firstTeam, secondTeam = input('Введите названия команд через пробел\n').split(' ')
+            firstTeam, secondTeam = input('Введите названия команд через пробел\n').lower().split(' ')
             return firstTeam, secondTeam
         except ValueError as e:
             print('Ошибка ввода. Введите название 2 команд через пробел\n')
