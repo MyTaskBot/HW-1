@@ -4,7 +4,7 @@ MAX_ID = 4
 MAX_SCORE = 5
 WIN_SCORE = 3
 DRAW_SCORE = 1
-TEAMS_NAMES = ["name1", "name2", "name3", "name4"]
+TEAMS_NAMES = ["Спартак", "Зенит", "ЦСКА", "Ростов", "Краснодар" , "Терек", "Анжи", "Уфа" , "Рубин", "Локомотив"]
 
 # global structures
 matches = dict()
