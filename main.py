@@ -1,10 +1,10 @@
 from random import randint
 
-MAX_ID = 4
 MAX_SCORE = 5
 WIN_SCORE = 3
 DRAW_SCORE = 1
 TEAMS_NAMES = ["Спартак", "Зенит", "ЦСКА", "Ростов", "Краснодар" , "Терек", "Анжи", "Уфа" , "Рубин", "Локомотив"]
+MAX_ID = len(TEAMS_NAMES)
 
 # global structures
 matches = dict()
