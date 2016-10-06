@@ -186,25 +186,26 @@ def generate_match(id1, id2, teams, matches):
 
 # get match result by team names
 def get_match():
-    firstTeamId = -2
-    secondTeamId = -3
-    while check_teams(firstTeamId, secondTeamId) != 1:
-        firstTeam, secondTeam = get_query()
-        firstTeamId = teams_get_id(teams, firstTeam)
-        secondTeamId = teams_get_id(teams, secondTeam)
-    matchResult = get_match_result(firstTeamId, secondTeamId)
-    print('Матч завершился со счетом ' + str(matchResult[0]) + ' : ' + str(matchResult[1]))
+    first_team_id = None
+    second_team_id = None
+    while check_teams(first_team_id, second_team_id) != 1:
+        first_team, second_team = get_query()
+        first_team_id = teams_get_id(teams, first_team)
+        second_team_id = teams_get_id(teams, second_team)
+    match_result = get_match_result(first_team_id, second_team_id)
+    print('Матч завершился со счетом ' + str(match_result[0]) + ' : ' + str(match_result[1]))
     return
 
+
 def check_teams(id1, id2):
-    if int(id1) == -1 or int(id2) == -1:
+    if id1 == -1 or id2 == -1:
         print('Введите существующие команды')
         return -1
     elif id1 == id2:
         print('Команда не может играть сама с собой')
         return 0
-    elif id1 == -2 and id2 == -3:
-        return -2
+    elif id1 is None and id2 is None:
+        return
     else:
         return 1
 
@@ -212,18 +213,18 @@ def check_teams(id1, id2):
 def get_query():
     while True:
         try:
-            firstTeam, secondTeam = input('Введите названия команд через пробел\n').lower().split(' ')
-            return firstTeam, secondTeam
+            first_team, second_team = input('Введите названия команд через пробел\n').lower().split(' ')
+            return first_team, second_team
         except ValueError as e:
             print('Ошибка ввода. Введите название 2 команд через пробел\n')
-            pass
 
-def get_match_result(firsteamId, secondTeamId):
-    if firsteamId < secondTeamId:
-        return matches[(firsteamId, secondTeamId)]
+
+def get_match_result(first_team_id, second_team_id):
+    if first_team_id < second_team_id:
+        return matches[(first_team_id, second_team_id)]
     else:
-        matchesRev = matches[(secondTeamId, firsteamId)][::-1]
-        return matchesRev
+        matches_reverse = matches[(second_team_id, first_team_id)][::-1]
+        return matches_reverse
 
 # -----------------------------------------------------------------
 
