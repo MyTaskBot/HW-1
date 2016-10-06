@@ -32,8 +32,8 @@ def teams_add(teams, name, id):
 # print(teams_a)
 
 def create_teams(teams):
-    for id in range(MAX_ID):
-        teams_add(teams, TEAMS_NAMES[id], id)
+    for cur_id in range(MAX_ID):
+        teams_add(teams, TEAMS_NAMES[cur_id], cur_id)
 
 
 def teams_sort(teams):
