@@ -21,8 +21,7 @@ def teams_add(teams, name, id):
                   'draws': 0,
                   'place': 0,
                   'id': id}
-                 );
-    return;
+                 )
 
 
 # Sample for  teams_add()
@@ -38,10 +37,9 @@ def create_teams(teams):
 
 def teams_sort(teams):
     def sort_key(param):
-        return param["score"];
+        return -param["score"]
 
-    teams.sort(key=sort_key);
-    teams.reverse()
+    teams.sort(key=sort_key)
     pl = 1
     for v in teams:
         v["place"] = pl
@@ -59,7 +57,7 @@ def table_print(table, cols):
 
     # Печать строки таблицы
     def print_rows(cols, style_rows=ROWS):
-        cnt = 0;
+        cnt = 0
         print('%c' % (Border[style_rows * 3]), end='')
         for k in cols:
             cnt += 1
@@ -104,7 +102,6 @@ def table_print(table, cols):
             print_rows(cols, END_ROWS)
         else:
             print_rows(cols)
-    return;
 
 
 def teams_print(teams):
@@ -125,18 +122,10 @@ def teams_print(teams):
 
 
 # return -1 if not found
-def teams_get_id(teams, name, speed_search=True):
-    if (speed_search or hasattr(teams_get_id, '_dir')):
-        # create static dir
-        if (not hasattr(teams_get_id, '_dir')):
-            teams_get_id._dir = {}
-            for team in teams:
-                teams_get_id._dir[team["name"].lower()] = team["id"]
-        return teams_get_id._dir.get(name, -1)
-    else:
-        for team in teams:
-            if (team["name"].lower() == name):
-                return team["id"]
+def teams_get_id(teams, name):
+    for team in teams:
+        if (team["name"].lower() == name):
+            return team["id"]
     return -1
 
 
